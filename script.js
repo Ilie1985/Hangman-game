@@ -49,16 +49,16 @@ const words = [
 
 //Get a random word
 let selectedWord = words[Math.floor(Math.random() * words.length)];
-console.log((selectedWord ));
+console.log(selectedWord);
 
 //Store the correct letters
-const correctLetters = ["c", "e", "a", "p", "a"];
+const correctLetters = [];
 
 //Store the wrong letters
 const wrongLetters = [];
 //==================================================================================
 
-//DISPLAY THE HIDDEN WORD FUNCTIONALITY
+//displayWord FUNCTIONALITY
 //selectedWord needs to be turned into an array
 //to turn the string into an array i use the split method
 //we take a string from words (i.e coasta) and every letter is going to be an itme in the array
@@ -95,5 +95,58 @@ const displayWord = () => {
   }
 };
 displayWord();
-
 //==============================================================================
+
+//updateTheWrongLetterEl FUNCTIONALITY
+
+const updateTheWrongLettersEl = () => {};
+//========================================================================
+
+// showNotification FUNCTIONALITY
+//add the show class to notification element
+//set it to dissapear automatically after 2sec
+//remove the show class
+const showNotification = () => {
+  notification.classList.add("show");
+  setTimeout(() => {
+    notification.classList.remove("show");
+  }, 2000);
+};
+//=====================================================================
+
+//ADD EVENT LISTENERS
+
+//Key down letter press
+//use window object which is the very top level object in the DOM
+//only listen for letters ,if i press numbers or something else besides letters the event will not fire
+//use the keycode property that is inside the event parameter object
+//the range of letters form a to z is 65 to 90
+//first if only works if we press a letter on the keyboard
+//save the letter into a variable (letter)
+//push the letter on the correctLetter array but only if its not included already
+//update the wordEl element to show the new letter by invoking the displayWord function
+//if the letter is already inside correctLetter than invoke showNotification function
+//if the letter is not included in selectedWord push letter to the wrongLetters array
+//make sure it is not already on the wrongLetters array with if statement
+//invoke the function updateWrongLetterEl to be displayed in the wrongLettersElement
+window.addEventListener("keydown", (e) => {
+  if (e.key >= 65 && e.key <= 90) {
+    const letter = e.key;
+    if (selectedWord.includes(letter)) {
+      if (!correctLetters.includes(letter)) {
+        correctLetters.push(letter);
+        displayWord();
+      } else {
+        showNotification();
+      }
+    } else {
+      if (!wrongLetters.includes(letter)) {
+        wrongLetters.push(letter);
+        updateWrongLettersEl();
+      } else {
+        showNotification();
+      }
+    }
+  }
+});
+//=====================================================================================
