@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Hangman</title>
+  </head>
+  <body>
+    <h1>Hangman</h1>
+    <p>Find the hidden word - Enter a letter</p>
+
+    <!-- GAME CONTAINER -->
+
+    <div class="game-container">
+      <!-- svg element can be styled like any other Html element and i gave it a class -->
+      <svg class="figure-container" height="250" width="200">
+        <!-- BUILDING THE ROD -->
+        <!-- create a line element -->
+        <!-- x1 is the start of the line on the X axis (horizontal)-->
+        <!-- x2 is where the line of the X axis ends -->
+        <!-- y1 is the start of the line on the y axis (vertical) -->
+        <!-- y2 is where the line of the Y axis ends -->
+        <!-- i need to add the styling in order to be able to see it on the browser -->
+        <line x1="60" y1="20" x2="140" y2="20" />
+        <line x1="140" y1="20" x2="140" y2="50" />
+        <line x1="60" y1="20" x2="60" y2="230" />
+        <line x1="20" y1="230" x2="100" y2="230" />
+
+        <!-- BULDING THE HEAD -->
+        <!-- create a circle element -->
+        <!--cx and cy define the x and y coordinates of the center of the circle -->
+        <!-- r is the radius -->
+        <!-- add class for the styling part -->
+        <circle cx="140" cy="70" r="20" class="figure-part" />
+
+        <!-- BUILDING THE BODY -->
+        <!-- create a line element -->
+        <!-- neck-->
+        <!-- torso -->
+        <!--left arm -->
+        <!-- right arm -->
+        <!-- left leg -->
+        <!-- right leg -->
+        <!-- add class for the styling part -->
+        <line x1="140" y1="90" x2="140" y2="110" class="figure-part" />
+        <line x1="140" y1="110" x2="140" y2="170" class="figure-part" />
+        <line x1="140" y1="110" x2="120" y2="130" class="figure-part" />
+        <line x1="140" y1="110" x2="160" y2="130" class="figure-part" />
+        <line x1="140" y1="170" x2="120" y2="200" class="figure-part" />
+        <line x1="140" y1="170" x2="160" y2="200" class="figure-part" />
+      </svg>
+
+      <!-- WRONG LETTERS CONTAINER -->
+      <div class="wrong-letters-container">
+        <div id="wrong-letters">
+          <p>Wrong</p>
+          <span>e, r, t, y</span>
+        </div>
+      </div>
+      <div class="word" id="word">
+        <div class="letter">h</div>
+        <div class="letter">e</div>
+        <div class="letter">l</div>
+        <div class="letter">l</div>
+        <div class="letter">o</div>
+      </div>
+    </div>
+
+    <!-- CONTAINER FOR FINAL MESSAGE -->
+
+    <div class="popup-container" id="popup-container">
+      <div class="popup">
+        <h2 id="final-message">You Have Won</h2>
+        <button id="play-button">Play Again</button>
+      </div>
+    </div>
+
+    <!-- NOTIFY IF THE LETTER IS ALREADY BEEN USED CONTAINER-->
+    <div class="notification-container" id="notification-container">
+      <p>You have already entered this letter</p>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
